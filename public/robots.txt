@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Update the host below to match your production domain (see astro.config.mjs).
+Sitemap: https://www.apexmepsolutions.ca/sitemap-index.xml

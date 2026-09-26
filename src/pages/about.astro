@@ -1,0 +1,228 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import CTA from '../components/CTA.astro';
+import { company, founder, values, mission, vision } from '../data/site';
+
+const title = `About | ${company.name}`;
+const description =
+  'Learn about Apex MEP Contract Solutions Inc., an Ontario-incorporated professional-services company founded by Muhammad Azeem Ashraf, an Electrical Engineer and Contracts Manager with 10+ years of MEP experience.';
+---
+<BaseLayout title={title} description={description} path="/about/">
+  <!-- Page header -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">About us</span>
+      <h1>A specialist construction-support company, built on real project experience.</h1>
+      <p class="lead">
+        {company.name} is an Ontario-incorporated professional-services company
+        providing MEP contract management, procurement and project support to
+        construction businesses.
+      </p>
+    </div>
+  </section>
+
+  <!-- Overview + registration -->
+  <section class="section">
+    <div class="container overview-grid">
+      <div>
+        <span class="eyebrow">Company overview</span>
+        <h2>Support, not construction.</h2>
+        <p>
+          The name Apex MEP reflects our specialisation in mechanical, electrical
+          and plumbing construction project support and contract services. We do
+          not operate as a full-scale construction contractor with heavy equipment
+          or a large field workforce.
+        </p>
+        <p>
+          Instead, we provide professional commercial, technical and
+          project-management support to companies already operating in the
+          construction industry, combining engineering knowledge, contract
+          management, procurement and project coordination in one place.
+        </p>
+      </div>
+      <aside class="reg-card">
+        <h3>Registration</h3>
+        <dl>
+          <div><dt>Legal name</dt><dd>{company.legalName}</dd></div>
+          <div><dt>Ontario Corp. No.</dt><dd>{company.corpNumber}</dd></div>
+          <div><dt>Incorporated</dt><dd>{company.incorporated}</dd></div>
+          <div><dt>Governing act</dt><dd>{company.act}</dd></div>
+          <div><dt>Registered office</dt><dd>{company.address.street}, {company.address.city}, {company.address.region} {company.address.postalCode}</dd></div>
+          <div><dt>Ownership</dt><dd>{founder.name}, {founder.ownership}</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Mission / Vision -->
+  <section class="section section--alt">
+    <div class="container grid grid-2">
+      <div class="mv-card">
+        <span class="icon-badge"><Icon name="target" /></span>
+        <h3>Our Mission</h3>
+        <p>{mission}</p>
+      </div>
+      <div class="mv-card">
+        <span class="icon-badge"><Icon name="award" /></span>
+        <h3>Our Vision</h3>
+        <p>{vision}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">What we stand for</span>
+        <h2>Core values</h2>
+      </div>
+      <div class="grid grid-3">
+        {values.map((v) => (
+          <div class="card value-card">
+            <h3>{v.title}</h3>
+            <p>{v.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder -->
+  <section class="section section--navy">
+    <div class="container founder-grid">
+      <aside class="founder-card">
+        <div class="founder-avatar" aria-hidden="true">
+          {founder.name.split(' ').map((n) => n[0]).slice(0, 2).join('')}
+        </div>
+        <strong>{founder.name}</strong>
+        <span>{founder.title}</span>
+        <span class="founder-own">{founder.ownership}</span>
+      </aside>
+      <div>
+        <span class="eyebrow">Founder profile</span>
+        <h2>Muhammad Azeem Ashraf</h2>
+        <p>{founder.summary}</p>
+
+        <h3 class="fh">Education &amp; training</h3>
+        <p class="fp">{founder.education}</p>
+        <ul class="chip-list">
+          {founder.training.map((t) => <li>{t}</li>)}
+        </ul>
+
+        <h3 class="fh">Technical software</h3>
+        <ul class="chip-list">
+          {founder.software.map((s) => <li>{s}</li>)}
+        </ul>
+
+        <h3 class="fh">Areas of expertise</h3>
+        <ul class="checklist expertise">
+          {founder.expertise.map((e) => <li>{e}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Career timeline -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Career progression</span>
+        <h2>From engineering to contracts management</h2>
+        <p class="lead">
+          A decade of hands-on experience across the full MEP project lifecycle.
+        </p>
+      </div>
+      <ol class="timeline">
+        {founder.career.map((c) => (
+          <li>
+            <span class="tl-dot" aria-hidden="true"></span>
+            <div class="tl-body">
+              <h3>{c.role}</h3>
+              <p>{c.focus}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background:
+      radial-gradient(800px 400px at 90% -30%, rgba(43,108,176,0.1), transparent 55%),
+      linear-gradient(180deg, #f7fafd, #fff);
+    border-bottom: 1px solid var(--line);
+    padding-top: clamp(34px, 4.5vw, 52px);
+    padding-bottom: clamp(22px, 3vw, 34px);
+  }
+  .page-hero h1 { margin-block: 6px 16px; max-width: 18ch; }
+  .page-hero .lead { max-width: 60ch; }
+
+  .overview-grid { display: grid; grid-template-columns: 1.3fr 0.9fr; gap: 44px; align-items: start; }
+  .overview-grid p + p { margin-top: 15px; }
+  .overview-grid h2 { margin-block: 8px 16px; }
+
+  .reg-card { background: var(--bg-alt); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px; }
+  .reg-card h3 { margin-bottom: 18px; color: var(--navy); }
+  .reg-card dl { display: grid; gap: 15px; margin: 0; }
+  .reg-card dt { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .reg-card dd { margin: 2px 0 0; font-weight: 600; color: var(--navy); font-size: 0.98rem; }
+
+  .mv-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 34px; box-shadow: var(--shadow-sm); }
+  .mv-card h3 { margin-bottom: 12px; color: var(--navy); font-size: 1.3rem; }
+
+  .value-card h3 { color: var(--navy); margin-bottom: 8px; }
+  .value-card p { font-size: 0.97rem; }
+
+  /* founder */
+  .founder-grid { display: grid; grid-template-columns: 280px 1fr; gap: 48px; align-items: start; }
+  .founder-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-lg); padding: 30px; text-align: center; position: sticky; top: 90px;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .founder-avatar {
+    width: 110px; height: 110px; border-radius: 50%; display: grid; place-items: center;
+    font-size: 2.4rem; font-weight: 800; color: #fff; margin-bottom: 18px;
+    background: linear-gradient(150deg, var(--blue), var(--navy-600));
+    box-shadow: inset 0 0 0 3px rgba(243,165,52,0.6);
+  }
+  .founder-card strong { color: #fff; font-size: 1.1rem; }
+  .founder-card span { color: #9fb4ca; font-size: 0.9rem; }
+  .founder-own { color: var(--accent) !important; font-weight: 600; margin-top: 4px; }
+
+  .fh { color: #fff; font-size: 1.02rem; margin-top: 26px; margin-bottom: 10px; }
+  .fp { margin-bottom: 12px; }
+  .chip-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip-list li {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+    color: #cfe0f0; padding: 6px 13px; border-radius: 999px; font-size: 0.86rem;
+  }
+  .expertise { margin-top: 4px; }
+  .expertise li { color: #cfe0f0; }
+  .section--navy .checklist li::before { background-color: rgba(243,165,52,0.25); }
+
+  /* timeline */
+  .timeline { list-style: none; padding: 0; max-width: 780px; margin-inline: auto; position: relative; }
+  .timeline::before {
+    content: ''; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: var(--line);
+  }
+  .timeline li { position: relative; padding-left: 34px; padding-bottom: 28px; }
+  .timeline li:last-child { padding-bottom: 0; }
+  .tl-dot {
+    position: absolute; left: 0; top: 5px; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 0 4px rgba(243,165,52,0.18);
+  }
+  .tl-body h3 { color: var(--navy); margin-bottom: 6px; }
+  .tl-body p { font-size: 0.97rem; }
+
+  @media (max-width: 940px) {
+    .overview-grid, .founder-grid { grid-template-columns: 1fr; }
+    .founder-card { position: static; max-width: 320px; }
+  }
+</style>

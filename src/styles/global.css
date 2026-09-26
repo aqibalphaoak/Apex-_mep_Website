@@ -1,0 +1,337 @@
+/* =========================================================
+   Apex MEP Contract Solutions Inc. Global styles
+   ========================================================= */
+
+:root {
+  /* Brand palette */
+  --navy: #0e2a47;
+  --navy-700: #123556;
+  --navy-600: #1b4b7a;
+  --blue: #2b6cb0;
+  --accent: #f3a534;   /* amber */
+  --accent-600: #e0912a;
+
+  /* Neutrals */
+  --ink: #16202c;
+  --body: #33414f;
+  --muted: #64748b;
+  --line: #e3e8ef;
+  --bg: #ffffff;
+  --bg-alt: #f5f8fb;
+  --bg-navy-soft: #0e2a47;
+
+  /* Type */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+
+  /* Layout */
+  --container: 1150px;
+  --radius: 12px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px rgba(14, 42, 71, 0.06), 0 1px 3px rgba(14, 42, 71, 0.08);
+  --shadow-md: 0 10px 30px -12px rgba(14, 42, 71, 0.22);
+  --shadow-lg: 0 24px 60px -20px rgba(14, 42, 71, 0.28);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--body);
+  background: var(--bg);
+  line-height: 1.65;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+a:hover {
+  color: var(--navy);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--ink);
+  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2.1rem, 5vw, 3.35rem);
+}
+h2 {
+  font-size: clamp(1.6rem, 3.4vw, 2.35rem);
+}
+h3 {
+  font-size: 1.22rem;
+}
+
+p {
+  color: var(--body);
+}
+
+ul {
+  padding-left: 1.1rem;
+}
+
+/* ---------- Layout helpers ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 32px);
+}
+
+.section {
+  padding-block: clamp(44px, 5.5vw, 72px);
+}
+
+/* Tighten the gap where a page hero is directly followed by a content section */
+.page-hero + section {
+  padding-top: clamp(20px, 2.5vw, 30px);
+}
+
+.section--alt {
+  background: var(--bg-alt);
+}
+
+.section--navy {
+  background:
+    radial-gradient(1200px 500px at 15% -10%, rgba(43, 108, 176, 0.35), transparent 60%),
+    linear-gradient(160deg, var(--navy) 0%, #0a2038 100%);
+  color: #dbe6f2;
+}
+.section--navy h2,
+.section--navy h3 {
+  color: #fff;
+}
+.section--navy p {
+  color: #b9c9db;
+}
+
+.section-head {
+  max-width: 720px;
+  margin-bottom: clamp(24px, 3.5vw, 42px);
+}
+.section-head.center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-600);
+  margin-bottom: 14px;
+}
+.section--navy .eyebrow {
+  color: var(--accent);
+}
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.lead {
+  font-size: 1.12rem;
+  color: var(--muted);
+  margin-top: 14px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  --btn-bg: var(--accent);
+  --btn-fg: #16202c;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+  padding: 13px 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.98rem;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease),
+    background 0.2s var(--ease), color 0.2s var(--ease);
+  box-shadow: 0 8px 20px -10px rgba(243, 165, 52, 0.7);
+}
+.btn:hover {
+  transform: translateY(-2px);
+  color: #16202c;
+  box-shadow: 0 14px 26px -10px rgba(243, 165, 52, 0.8);
+}
+.btn--outline {
+  --btn-bg: transparent;
+  --btn-fg: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: none;
+}
+.btn--outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--navy);
+  border-color: var(--line);
+  box-shadow: none;
+}
+.btn--ghost:hover {
+  background: var(--bg-alt);
+  color: var(--navy);
+  border-color: var(--navy-600);
+}
+
+/* ---------- Cards / grids ---------- */
+.grid {
+  display: grid;
+  gap: clamp(18px, 2.5vw, 28px);
+}
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: #cfe0f0;
+}
+
+.icon-badge {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: linear-gradient(150deg, rgba(43, 108, 176, 0.14), rgba(243, 165, 52, 0.16));
+  color: var(--navy-600);
+  margin-bottom: 18px;
+}
+.icon-badge svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* ---------- Utility ---------- */
+.text-center { text-align: center; }
+.checklist {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.checklist li {
+  position: relative;
+  padding-left: 30px;
+  color: var(--body);
+}
+.checklist li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(243, 165, 52, 0.18);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23e0912a' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--navy);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 0 0 8px 0;
+  z-index: 200;
+}
+.skip-link:focus {
+  left: 0;
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .grid-2,
+  .grid-3,
+  .grid-4 { grid-template-columns: 1fr; }
+  .card { padding: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

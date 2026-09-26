@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import CTA from '../components/CTA.astro';
+import { company, advantages, process } from '../data/site';
+
+const title = `Why Choose Us | ${company.name}`;
+const description =
+  'Apex MEP combines electrical-engineering knowledge with contract management, procurement and cost control, plus structured digital systems that give smaller contractors big-department capability.';
+---
+<BaseLayout title={title} description={description} path="/why-choose-us/">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Why Apex</span>
+      <h1>The combination is the difference.</h1>
+      <p class="lead">
+        Most consultants offer either engineering knowledge or commercial and
+        contract expertise. Apex brings both, so we understand what needs to be
+        built <em>and</em> how the project should be commercially managed.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2 adv-grid">
+        {advantages.map((a, idx) => (
+          <div class="card adv-card">
+            <span class="adv-num">{String(idx + 1).padStart(2, '0')}</span>
+            <h3>{a.title}</h3>
+            <p>{a.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Two ways of thinking -->
+  <section class="section section--navy">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">One team, two perspectives</span>
+        <h2>We see both sides of every project</h2>
+      </div>
+      <div class="dual">
+        <div class="dual-card">
+          <span class="icon-badge"><Icon name="bolt" /></span>
+          <h3>“What needs to be built?”</h3>
+          <p>Technical understanding of MEP and electrical systems, drawings and site realities.</p>
+        </div>
+        <span class="dual-plus" aria-hidden="true">+</span>
+        <div class="dual-card">
+          <span class="icon-badge"><Icon name="contract" /></span>
+          <h3>“How should it be managed?”</h3>
+          <p>Contracts, procurement, claims, cost control and commercial risk, properly documented.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">How we work</span>
+        <h2>A simple, structured process</h2>
+        <p class="lead">
+          Most engagements start small and grow into a long-term relationship.
+        </p>
+      </div>
+      <div class="grid grid-3 proc-grid">
+        {process.map((p) => (
+          <div class="proc-card">
+            <span class="proc-step">{p.step}</span>
+            <h3>{p.title}</h3>
+            <p>{p.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background:
+      radial-gradient(800px 400px at 90% -30%, rgba(43,108,176,0.1), transparent 55%),
+      linear-gradient(180deg, #f7fafd, #fff);
+    border-bottom: 1px solid var(--line);
+    padding-top: clamp(34px, 4.5vw, 52px);
+    padding-bottom: clamp(22px, 3vw, 34px);
+  }
+  .page-hero h1 { margin-block: 6px 16px; max-width: 16ch; }
+  .page-hero .lead { max-width: 62ch; }
+  .page-hero em { color: inherit; font-style: normal; }
+
+  .adv-card { position: relative; padding-top: 34px; }
+  .adv-num {
+    position: absolute; top: 24px; right: 28px; font-size: 2rem; font-weight: 800;
+    color: rgba(14,42,71,0.07); line-height: 1;
+  }
+  .adv-card h3 { color: var(--navy); margin-bottom: 10px; max-width: 22ch; }
+  .adv-card p { font-size: 0.97rem; }
+
+  .dual { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; }
+  .dual-card {
+    flex: 1 1 300px; max-width: 380px; text-align: center;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-lg); padding: 34px;
+  }
+  .dual-card .icon-badge { margin-inline: auto; background: rgba(243,165,52,0.18); color: var(--accent); }
+  .dual-card h3 { color: #fff; margin-bottom: 8px; }
+  .dual-plus { font-size: 2.4rem; font-weight: 700; color: var(--accent); }
+
+  .proc-grid { counter-reset: step; }
+  .proc-card {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg);
+    padding: 28px; box-shadow: var(--shadow-sm); position: relative; overflow: hidden;
+  }
+  .proc-step {
+    font-size: 1.05rem; font-weight: 800; color: #fff; background: var(--navy);
+    width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center; margin-bottom: 16px;
+  }
+  .proc-card h3 { color: var(--navy); margin-bottom: 6px; }
+  .proc-card p { font-size: 0.95rem; }
+
+  @media (max-width: 620px) {
+    .dual-plus { transform: rotate(90deg); }
+  }
+</style>

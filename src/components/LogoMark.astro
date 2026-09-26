@@ -1,0 +1,28 @@
+---
+/**
+ * Apex peak monogram: a geometric "A" formed as a summit/peak.
+ * The peak tip is amber (the "apex"); the legs + crossbar use currentColor,
+ * so it adapts to any background (white on navy, navy on light).
+ */
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+<svg
+  viewBox="0 0 64 64"
+  fill="none"
+  stroke-width="7"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={className}
+  aria-hidden="true"
+>
+  <!-- left + right legs -->
+  <path d="M12 52 L27.5 21" stroke="currentColor" />
+  <path d="M52 52 L36.5 21" stroke="currentColor" />
+  <!-- crossbar -->
+  <path d="M23 39 H41" stroke="currentColor" />
+  <!-- amber apex tip -->
+  <path d="M27.5 21 L32 12 L36.5 21" stroke="#f3a534" />
+</svg>

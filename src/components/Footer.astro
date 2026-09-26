@@ -1,0 +1,155 @@
+---
+import { company, nav, services } from '../data/site';
+import Icon from './Icon.astro';
+import LogoMark from './LogoMark.astro';
+const year = new Date().getFullYear();
+const addr = company.address;
+---
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="brand">
+        <span class="brand-mark" aria-hidden="true"><LogoMark /></span>
+        <span class="brand-text">
+          <strong>Apex MEP</strong>
+          <small>Contract Solutions Inc.</small>
+        </span>
+      </a>
+      <p class="footer-tag">{company.tagline}</p>
+      <p class="footer-note">Proudly serving {company.serviceArea}.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        {nav.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+        <li><a href="/faq/">FAQ</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        {services.map((s) => (
+          <li><a href={`/services/#${s.slug}`}>{s.title}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer-col footer-contact">
+      <h4>Get in touch</h4>
+      <ul>
+        <li>
+          <Icon name="pin" />
+          <span>{addr.street}, {addr.city}, {addr.region} {addr.postalCode}, {addr.country}</span>
+        </li>
+        <li>
+          <Icon name="mail" />
+          <a href={`mailto:${company.email}`}>{company.email}</a>
+        </li>
+        {company.phone && (
+          <li>
+            <Icon name="phone" />
+            <a href={`tel:${company.phone.replace(/[^+\d]/g, '')}`}>{company.phone}</a>
+          </li>
+        )}
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <div class="container footer-bar-inner">
+      <p>© {year} {company.legalName} All rights reserved.</p>
+      <p class="corp">Ontario Corporation No. {company.corpNumber} &middot; Incorporated {company.incorporated}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background:
+      linear-gradient(160deg, var(--navy) 0%, #0a2038 100%);
+    color: #b9c9db;
+    margin-top: auto;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1.2fr 1.4fr;
+    gap: 40px;
+    padding-block: clamp(48px, 6vw, 72px);
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .brand-mark {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    box-shadow: inset 0 0 0 2px rgba(243, 165, 52, 0.6);
+  }
+  .brand-mark svg { width: 27px; height: 27px; }
+  .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+  .brand-text strong { font-size: 1.08rem; color: #fff; }
+  .brand-text small { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: #8ea6bf; }
+
+  .footer-tag { color: #9fb4ca; max-width: 34ch; margin-bottom: 8px; }
+  .footer-note { color: #7f97af; font-size: 0.9rem; }
+
+  .footer-col h4 {
+    color: #fff;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; padding: 0; display: grid; gap: 10px; }
+  .footer-col a { color: #a9bccf; font-size: 0.95rem; }
+  .footer-col a:hover { color: var(--accent); }
+
+  .footer-contact ul { gap: 14px; }
+  .footer-contact li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 0.95rem;
+    color: #a9bccf;
+  }
+  .footer-contact :global(svg) {
+    width: 18px;
+    height: 18px;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .footer-bar {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .footer-bar-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-block: 20px;
+  }
+  .footer-bar p { font-size: 0.85rem; color: #7f97af; }
+  .corp { color: #6f8298; }
+
+  @media (max-width: 860px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  @media (max-width: 520px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bar-inner { flex-direction: column; gap: 6px; }
+  }
+</style>

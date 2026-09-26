@@ -1,0 +1,371 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import CTA from '../components/CTA.astro';
+import { company, founder, services, industries, advantages, marketStats } from '../data/site';
+import LogoMark from '../components/LogoMark.astro';
+
+const title = `${company.name} | MEP Contract & Project Support in Ontario`;
+const description =
+  'Apex MEP Contract Solutions Inc. provides MEP contract administration, construction procurement, claims & variation support, cost control and project coordination to contractors across Ontario, Canada.';
+---
+<BaseLayout title={title} description={description} path="/">
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow">Ontario-based construction support</span>
+        <h1>Commercial &amp; project support that keeps construction moving.</h1>
+        <p class="lead">
+          {company.name} combines electrical-engineering knowledge with contract
+          administration, procurement and project coordination, helping Ontario
+          contractors control costs, manage obligations and deliver projects with
+          confidence.
+        </p>
+        <div class="hero-actions">
+          <a href="/contact/" class="btn">Get a Consultation <Icon name="arrow" /></a>
+          <a href="/services/" class="btn btn--ghost">Explore Services</a>
+        </div>
+        <ul class="hero-trust">
+          <li><Icon name="shield" /> Incorporated in Ontario</li>
+          <li><Icon name="award" /> 10+ years MEP experience</li>
+          <li><Icon name="layers" /> Engineering + commercial expertise</li>
+        </ul>
+      </div>
+
+      <aside class="hero-card" aria-label="Company registration">
+        <div class="hero-card-top">
+          <span class="hero-card-mark" aria-hidden="true"><LogoMark /></span>
+          <div>
+            <strong>{company.name}</strong>
+            <span>Registered Ontario corporation</span>
+          </div>
+        </div>
+        <dl class="hero-card-facts">
+          <div>
+            <dt>Ontario Corp. No.</dt>
+            <dd>{company.corpNumber}</dd>
+          </div>
+          <div>
+            <dt>Incorporated</dt>
+            <dd>{company.incorporated}</dd>
+          </div>
+          <div>
+            <dt>Location</dt>
+            <dd>{company.address.city}, {company.address.region}</dd>
+          </div>
+          <div>
+            <dt>Focus</dt>
+            <dd>MEP contract &amp; project support</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ INTRO ============ -->
+  <section class="section">
+    <div class="container intro-grid">
+      <div class="section-head" style="margin-bottom:0">
+        <span class="eyebrow">What we do</span>
+        <h2>Specialised support for construction companies, without the overhead.</h2>
+      </div>
+      <div class="intro-body">
+        <p>
+          Construction teams often face poor contract administration, uncontrolled
+          variations, procurement delays and cost overruns. Apex provides the
+          commercial, technical and project-management support that reduces these
+          problems, so your team can focus on building.
+        </p>
+        <p>
+          We are a professional-services company, not a construction contractor.
+          That means smaller contractors get access to senior contract, procurement
+          and cost-control expertise on a flexible basis: hourly, fixed-fee,
+          project-based or on a monthly retainer.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Our services</span>
+        <h2>Six ways we help you deliver</h2>
+        <p class="lead">
+          A connected set of commercial and project-support services, offered
+          together, not in isolation.
+        </p>
+      </div>
+      <div class="grid grid-3">
+        {services.map((s) => (
+          <a class="card service-card" href={`/services/#${s.slug}`}>
+            <span class="icon-badge"><Icon name={s.icon} /></span>
+            <h3>{s.title}</h3>
+            <p>{s.summary}</p>
+            <span class="service-link">Learn more <Icon name="arrow" /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MARKET OPPORTUNITY ============ -->
+  <section class="section market">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">The Ontario opportunity</span>
+        <h2>A strong, growing market for construction support</h2>
+        <p class="lead">
+          Ontario’s construction sector is expanding, and contractors increasingly
+          need specialised commercial and project expertise to keep up.
+        </p>
+      </div>
+      <div class="grid grid-4 stats-grid">
+        {marketStats.map((s) => (
+          <div class="stat-card">
+            <span class="stat-value">{s.value}</span>
+            <p class="stat-label">{s.label}</p>
+            <span class="stat-sub">{s.sub}</span>
+            <span class="stat-source">Source: {s.source}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY US ============ -->
+  <section class="section section--alt">
+    <div class="container why-grid">
+      <div class="section-head" style="margin-bottom:0">
+        <span class="eyebrow">Why Apex</span>
+        <h2>Engineering understanding <em>and</em> commercial control.</h2>
+        <p class="lead">
+          Many consultants offer one or the other. Apex brings both, so we
+          understand what needs to be built and how it should be commercially
+          managed.
+        </p>
+        <a href="/why-choose-us/" class="btn btn--ghost" style="margin-top:24px">
+          Why choose us <Icon name="arrow" />
+        </a>
+      </div>
+      <ul class="why-list">
+        {advantages.slice(0, 4).map((a) => (
+          <li>
+            <span class="why-check"><Icon name="check" /></span>
+            <div>
+              <h3>{a.title}</h3>
+              <p>{a.text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ INDUSTRIES ============ -->
+  <section class="section section--navy">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Who we serve</span>
+        <h2>Built for Ontario’s construction ecosystem</h2>
+      </div>
+      <div class="grid grid-4 ind-grid">
+        {industries.map((i) => (
+          <div class="ind-item">
+            <span class="ind-icon"><Icon name={i.icon} /></span>
+            <span>{i.title}</span>
+          </div>
+        ))}
+      </div>
+      <p class="text-center" style="margin-top:32px">
+        <a href="/industries/" class="btn btn--outline">See how we help each one <Icon name="arrow" /></a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ FOUNDER ============ -->
+  <section class="section">
+    <div class="container founder-grid">
+      <div class="founder-portrait" aria-hidden="true">
+        <span>{founder.name.split(' ').map((n) => n[0]).slice(0, 2).join('')}</span>
+      </div>
+      <div>
+        <span class="eyebrow">Led by the founder</span>
+        <h2>{founder.name}</h2>
+        <p class="founder-role">{founder.title} · {founder.ownership}</p>
+        <p>{founder.summary}</p>
+        <p>
+          His career progression, from electrical engineering to project and
+          contracts management, gives Apex a rare combination of technical and
+          commercial expertise.
+        </p>
+        <a href="/about/" class="btn btn--ghost" style="margin-top:22px">
+          More about the founder <Icon name="arrow" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .hero {
+    position: relative;
+    background:
+      radial-gradient(900px 500px at 100% -20%, rgba(43, 108, 176, 0.12), transparent 55%),
+      linear-gradient(180deg, #f7fafd 0%, #ffffff 100%);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(14, 42, 71, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(14, 42, 71, 0.035) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(700px 400px at 80% 0%, #000, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.35fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+    padding-block: clamp(44px, 6vw, 80px);
+  }
+  .hero-copy h1 { margin-block: 6px 18px; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+  .hero-actions :global(svg) { width: 18px; height: 18px; }
+  .hero-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    list-style: none;
+    padding: 0;
+    margin-top: 34px;
+  }
+  .hero-trust li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--navy);
+  }
+  .hero-trust :global(svg) { width: 18px; height: 18px; color: var(--accent-600); }
+
+  .hero-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    box-shadow: var(--shadow-lg);
+  }
+  .hero-card-top { display: flex; align-items: center; gap: 13px; margin-bottom: 22px; }
+  .hero-card-mark {
+    width: 46px; height: 46px; display: grid; place-items: center;
+    border-radius: 11px; color: #fff;
+    background: linear-gradient(150deg, var(--navy), var(--navy-600));
+    box-shadow: inset 0 0 0 2px rgba(243, 165, 52, 0.6);
+  }
+  .hero-card-mark svg { width: 30px; height: 30px; }
+  .hero-card-top strong { display: block; color: var(--navy); font-size: 1.02rem; }
+  .hero-card-top span { font-size: 0.85rem; color: var(--muted); }
+  .hero-card-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 0; }
+  .hero-card-facts dt {
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted);
+  }
+  .hero-card-facts dd { margin: 3px 0 0; font-weight: 700; color: var(--navy); font-size: 1.02rem; }
+
+  /* Intro */
+  .intro-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 44px; align-items: start; }
+  .intro-body p + p { margin-top: 16px; }
+
+  /* Market stats */
+  .stats-grid { gap: 20px; }
+  .stat-card {
+    display: flex; flex-direction: column; padding: 28px 24px;
+    border: 1px solid var(--line); border-radius: var(--radius-lg); background: #fff;
+    box-shadow: var(--shadow-sm); border-top: 3px solid var(--accent);
+  }
+  .stat-value {
+    font-size: clamp(2rem, 3.4vw, 2.6rem); font-weight: 800; color: var(--navy);
+    letter-spacing: -0.02em; line-height: 1;
+  }
+  .stat-label { font-size: 0.95rem; color: var(--body); margin-top: 12px; flex-grow: 1; }
+  .stat-sub { font-size: 0.86rem; font-weight: 600; color: var(--accent-600); margin-top: 10px; }
+  .stat-source {
+    font-size: 0.74rem; color: var(--muted); margin-top: 10px;
+    padding-top: 10px; border-top: 1px solid var(--line);
+  }
+
+  /* Service cards */
+  .service-card { display: flex; flex-direction: column; }
+  .service-card h3 { margin-bottom: 8px; color: var(--navy); }
+  .service-card p { font-size: 0.97rem; }
+  .service-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 16px; font-weight: 600; font-size: 0.9rem; color: var(--blue);
+  }
+  .service-link :global(svg) { width: 16px; height: 16px; transition: transform 0.2s var(--ease); }
+  .service-card:hover .service-link :global(svg) { transform: translateX(4px); }
+
+  /* Why */
+  .why-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; align-items: start; }
+  .why-grid em { color: inherit; font-style: normal; }
+  .why-list { list-style: none; padding: 0; display: grid; gap: 22px; }
+  .why-list li { display: flex; gap: 15px; }
+  .why-check {
+    flex-shrink: 0; width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center;
+    background: rgba(243, 165, 52, 0.16); color: var(--accent-600);
+  }
+  .why-check :global(svg) { width: 18px; height: 18px; }
+  .why-list h3 { font-size: 1.06rem; color: var(--navy); margin-bottom: 4px; }
+  .why-list p { font-size: 0.96rem; }
+
+  /* Industries */
+  .ind-grid { gap: 16px; }
+  .ind-item {
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px; padding: 16px 18px; font-weight: 500; color: #fff;
+  }
+  .ind-icon {
+    width: 40px; height: 40px; flex-shrink: 0; border-radius: 10px; display: grid; place-items: center;
+    background: rgba(243, 165, 52, 0.16); color: var(--accent);
+  }
+  .ind-icon :global(svg) { width: 21px; height: 21px; }
+
+  /* Founder */
+  .founder-grid { display: grid; grid-template-columns: 300px 1fr; gap: 48px; align-items: center; }
+  .founder-portrait {
+    aspect-ratio: 1; border-radius: var(--radius-lg); display: grid; place-items: center;
+    background:
+      radial-gradient(120% 120% at 20% 10%, rgba(43,108,176,0.25), transparent 60%),
+      linear-gradient(155deg, var(--navy), #0a2038);
+    box-shadow: var(--shadow-lg);
+  }
+  .founder-portrait span { font-size: 4.6rem; font-weight: 800; color: #fff; letter-spacing: 0.04em; }
+  .founder-role { color: var(--accent-600); font-weight: 600; margin-bottom: 14px; }
+  .founder-grid p + p { margin-top: 14px; }
+
+  @media (max-width: 940px) {
+    .hero-inner,
+    .intro-grid,
+    .why-grid,
+    .founder-grid { grid-template-columns: 1fr; }
+    .hero-card { order: -1; }
+    .founder-portrait { max-width: 220px; }
+  }
+  @media (max-width: 620px) {
+    .hero-card-facts { grid-template-columns: 1fr; gap: 14px; }
+  }
+</style>

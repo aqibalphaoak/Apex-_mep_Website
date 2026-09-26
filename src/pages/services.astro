@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import CTA from '../components/CTA.astro';
+import { company, services, engagements } from '../data/site';
+
+const title = `Services | ${company.name}`;
+const description =
+  'MEP contract administration, construction procurement, claims & variation support, cost control, project coordination and tender & bid support for Ontario contractors.';
+---
+<BaseLayout title={title} description={description} path="/services/">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Our services</span>
+      <h1>Commercial &amp; project support, delivered as one connected service.</h1>
+      <p class="lead">
+        Rather than a single isolated task, Apex brings MEP knowledge, contract
+        administration, procurement, claims support, cost control and project
+        coordination together, so nothing falls through the cracks.
+      </p>
+      <nav class="svc-jump" aria-label="Services">
+        {services.map((s) => (
+          <a href={`#${s.slug}`}>{s.title}</a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container svc-list">
+      {services.map((s, i) => (
+        <article class="svc-row" id={s.slug}>
+          <div class="svc-info">
+            <span class="svc-num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="icon-badge"><Icon name={s.icon} /></span>
+            <h2>{s.title}</h2>
+            <p>{s.summary}</p>
+          </div>
+          <ul class="checklist svc-points">
+            {s.points.map((p) => <li>{p}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Legal positioning note (from business plan §11) -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="note-card">
+        <span class="icon-badge"><Icon name="shield" /></span>
+        <div>
+          <h3>Clear, responsible scope</h3>
+          <p>
+            Apex provides commercial, documentation and project-support services.
+            We do not perform regulated professional-engineering work that requires
+            licensing, and legal matters are referred to appropriately licensed
+            professionals. Any activity requiring professional-engineering
+            authorisation is undertaken only in accordance with Ontario
+            requirements.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engagement models -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">How you can work with us</span>
+        <h2>Flexible engagement models</h2>
+        <p class="lead">Choose the arrangement that fits your project and budget.</p>
+      </div>
+      <div class="grid grid-4">
+        {engagements.map((e) => (
+          <div class="card eng-card">
+            <h3>{e.title}</h3>
+            <p>{e.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    heading="Not sure which service you need?"
+    text="Tell us about your project and we’ll recommend the right support, from a one-off contract review to ongoing commercial management."
+  />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background:
+      radial-gradient(800px 400px at 90% -30%, rgba(43,108,176,0.1), transparent 55%),
+      linear-gradient(180deg, #f7fafd, #fff);
+    border-bottom: 1px solid var(--line);
+    padding-top: clamp(34px, 4.5vw, 52px);
+    padding-bottom: clamp(22px, 3vw, 34px);
+  }
+  .page-hero h1 { margin-block: 6px 16px; max-width: 20ch; }
+  .page-hero .lead { max-width: 62ch; }
+  .svc-jump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .svc-jump a {
+    font-size: 0.85rem; font-weight: 500; padding: 7px 14px; border-radius: 999px;
+    background: #fff; border: 1px solid var(--line); color: var(--navy);
+  }
+  .svc-jump a:hover { border-color: var(--accent); color: var(--accent-600); }
+
+  .svc-list { display: grid; gap: 26px; }
+  .svc-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;
+    padding: 34px; border: 1px solid var(--line); border-radius: var(--radius-lg);
+    background: #fff; box-shadow: var(--shadow-sm); scroll-margin-top: 96px;
+  }
+  .svc-row:nth-child(even) { background: var(--bg-alt); }
+  .svc-info { position: relative; }
+  .svc-num {
+    position: absolute; right: 0; top: -6px; font-size: 3rem; font-weight: 800;
+    color: rgba(14,42,71,0.06); line-height: 1;
+  }
+  .svc-info h2 { font-size: 1.5rem; color: var(--navy); margin-block: 6px 12px; }
+  .svc-points { align-self: center; }
+
+  .note-card {
+    display: flex; gap: 20px; align-items: flex-start;
+    background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--accent);
+    border-radius: var(--radius-lg); padding: 30px; box-shadow: var(--shadow-sm);
+  }
+  .note-card h3 { color: var(--navy); margin-bottom: 8px; }
+  .note-card .icon-badge { margin-bottom: 0; flex-shrink: 0; }
+
+  .eng-card h3 { color: var(--navy); font-size: 1.12rem; margin-bottom: 8px; }
+  .eng-card p { font-size: 0.95rem; }
+
+  @media (max-width: 820px) {
+    .svc-row { grid-template-columns: 1fr; gap: 22px; }
+    .svc-num { font-size: 2.4rem; }
+  }
+</style>

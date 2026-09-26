@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { company } from '../data/site';
+---
+<BaseLayout
+  title={`Page not found | ${company.name}`}
+  description="The page you were looking for could not be found."
+  path="/404/"
+>
+  <section class="section nf">
+    <div class="container">
+      <span class="nf-code">404</span>
+      <h1>We couldn’t find that page.</h1>
+      <p class="lead">The link may be broken or the page may have moved.</p>
+      <div class="nf-actions">
+        <a href="/" class="btn">Back to home <Icon name="arrow" /></a>
+        <a href="/services/" class="btn btn--ghost">View services</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf { text-align: center; padding-block: clamp(70px, 12vw, 140px); }
+  .nf-code {
+    font-size: clamp(4rem, 14vw, 8rem); font-weight: 800; line-height: 1;
+    color: transparent; -webkit-text-stroke: 2px var(--line); display: block; margin-bottom: 10px;
+  }
+  .nf .lead { max-width: 40ch; margin-inline: auto; }
+  .nf-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+  .nf-actions :global(svg) { width: 18px; height: 18px; }
+</style>

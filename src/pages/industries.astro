@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import CTA from '../components/CTA.astro';
+import { company, industries } from '../data/site';
+
+const title = `Industries We Serve | ${company.name}`;
+const description =
+  'Apex MEP supports general contractors, MEP and electrical contractors, subcontractors, developers, property & facility companies and project-management firms across Ontario.';
+---
+<BaseLayout title={title} description={description} path="/industries/">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Who we serve</span>
+      <h1>Support that fits every part of the construction chain.</h1>
+      <p class="lead">
+        We work with construction businesses across Ontario, especially small and
+        medium companies that need senior contract, procurement and project
+        expertise without carrying the cost of a full internal department.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2">
+        {industries.map((i) => (
+          <div class="card ind-card">
+            <span class="icon-badge"><Icon name={i.icon} /></span>
+            <div>
+              <h3>{i.title}</h3>
+              <p>{i.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--navy">
+    <div class="container sme-grid">
+      <div>
+        <span class="eyebrow">A note for smaller contractors</span>
+        <h2>Big-company capability, right-sized for you.</h2>
+      </div>
+      <p>
+        Small and medium-sized construction companies often can’t justify a full
+        internal contract-management and commercial department. Apex provides that
+        expertise on a flexible basis, so you get structured contracts,
+        procurement and cost control exactly when you need them, and only when you
+        need them.
+      </p>
+    </div>
+  </section>
+
+  <CTA
+    heading="Don’t see your exact fit?"
+    text="If your business touches construction, contracts or procurement, we can likely help. Reach out and let’s talk."
+  />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background:
+      radial-gradient(800px 400px at 90% -30%, rgba(43,108,176,0.1), transparent 55%),
+      linear-gradient(180deg, #f7fafd, #fff);
+    border-bottom: 1px solid var(--line);
+    padding-top: clamp(34px, 4.5vw, 52px);
+    padding-bottom: clamp(22px, 3vw, 34px);
+  }
+  .page-hero h1 { margin-block: 6px 16px; max-width: 20ch; }
+  .page-hero .lead { max-width: 62ch; }
+
+  .ind-card { display: flex; gap: 18px; align-items: flex-start; }
+  .ind-card .icon-badge { margin-bottom: 0; flex-shrink: 0; }
+  .ind-card h3 { color: var(--navy); margin-bottom: 6px; }
+  .ind-card p { font-size: 0.97rem; }
+
+  .sme-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: center; }
+
+  @media (max-width: 860px) {
+    .sme-grid { grid-template-columns: 1fr; gap: 18px; }
+  }
+</style>

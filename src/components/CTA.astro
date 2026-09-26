@@ -1,0 +1,44 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  heading?: string;
+  text?: string;
+}
+const {
+  heading = 'Let’s talk about your next project',
+  text = 'Whether it’s a single contract review or ongoing commercial support, we’re ready to help your team deliver with confidence.',
+} = Astro.props;
+---
+<section class="cta-band">
+  <div class="container cta-inner">
+    <div>
+      <h2>{heading}</h2>
+      <p>{text}</p>
+    </div>
+    <div class="cta-actions">
+      <a href="/contact/" class="btn">Get a Consultation <Icon name="arrow" /></a>
+      <a href="/services/" class="btn btn--outline">View Services</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-band {
+    background:
+      radial-gradient(900px 400px at 85% 120%, rgba(243, 165, 52, 0.25), transparent 60%),
+      linear-gradient(155deg, var(--navy) 0%, #0a2038 100%);
+    color: #fff;
+  }
+  .cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+    padding-block: clamp(44px, 6vw, 72px);
+  }
+  .cta-inner h2 { color: #fff; max-width: 18ch; }
+  .cta-inner p { color: #b9c9db; max-width: 46ch; margin-top: 12px; }
+  .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .cta-actions :global(svg) { width: 18px; height: 18px; }
+</style>
