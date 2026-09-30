@@ -32,7 +32,7 @@ export const company = {
 
   // TODO: replace these placeholders with the real business contact details.
   email: 'info@apexmepsolutions.ca',
-  phone: '', // e.g. '+1 (905) 000-0000'. Leave empty to hide phone on the site
+  phone: '+971 56 245 2077', // e.g. '+1 (905) 000-0000'. Leave empty to hide phone on the site
   linkedin: '', // e.g. 'https://www.linkedin.com/company/apex-mep-contract-solutions'
 
   serviceArea: 'Ontario, Canada',
